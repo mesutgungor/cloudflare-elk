@@ -20,5 +20,5 @@ for i in $(echo ${CF_ZONES} | sed "s/,/ /g"); do
   mkdir -p "${OUTPUT_DIR}"
   #curl -H "accept-encoding: gzip" -H "X-Auth-Email: ${CF_EMAIL}" -H "X-Auth-Key: ${CF_API_KEY}" "https://api.cloudflare.com/client/v4/zones/${i}/logs/received?start=${CF_DATE}T${CF_FROM_TIME}Z&end=${CF_DATE}T${CF_TO_TIME}Z&fields=${CF_FIELDS}" > ${OUTPUT_LOG}
   #to use new auth method by using api token above line has been changed to fullfill the auth method. Input your api token as the value of cf_api_key variable value in the docker-compose.yml
-  curl -H "Content-Type:application/json"  -H "Authorization: Bearer  ${CF_API_KEY}" "https://api.cloudflare.com/client/v4/zones/${i}/logs/received?start=${CF_DATE}T${CF_FROM_TIME}Z&end=${CF_DATE}T${CF_TO_TIME}Z&fields=${CF_FIELDS}" > ${OUTPUT_LOG}
+  curl -H "Content-Type:application/json"  -H "Authorization: Bearer ${CF_API_KEY}" "https://api.cloudflare.com/client/v4/zones/${i}/logs/received?start=${CF_DATE}T${CF_FROM_TIME}Z&end=${CF_DATE}T${CF_TO_TIME}Z&fields=${CF_FIELDS}" > ${OUTPUT_LOG}
 done
